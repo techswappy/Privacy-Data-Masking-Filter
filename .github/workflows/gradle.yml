@@ -2,7 +2,6 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
 - name: Java CI with Gradle
-
   on:
     push:
       branches: [ master ]
@@ -26,25 +25,12 @@
         run: ./gradlew build
 
 - name: Run java checkstyle
+  on:
+      push:
+        branches: [ master ]
+      pull_request:
+        branches: [ master ]
   uses: nikitasavinov/checkstyle-action@0.3.0
   with:
-    # GITHUB_TOKEN.
-    github_token: # optional, default is ${{ github.token }}
-    # Report level for reviewdog [info,warning,error]
-    level: # optional, default is info
-    # Reporter of reviewdog command [github-pr-check,github-pr-review]
-    reporter: # optional, default is github-pr-check
-    # Filtering for the reviewdog command [added,diff_context,file,nofilter].
-Default is `added`.
-
-    filter_mode: # optional, default is added
-    # Exit code for reviewdog when errors are found [true,false]
-Default is `false`.
-
-    fail_on_error: # optional, default is false
-    # Checkstyle config file
-    checkstyle_config: # default is google_checks.xml
-    # Working directory relative to the root directory.
-    workdir: # optional, default is .
-    # Tool name to use for reviewdog reporter
-    tool_name: # optional, default is reviewdog
+    level: error # optional, default is info
+    tool_name: reviewdog # optional, default is reviewdog
