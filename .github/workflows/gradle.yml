@@ -23,14 +23,8 @@
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
-
-- name: Run java checkstyle
-  on:
-      push:
-        branches: [ master ]
-      pull_request:
-        branches: [ master ]
-  uses: nikitasavinov/checkstyle-action@0.3.0
-  with:
-    level: error # optional, default is info
-    tool_name: reviewdog # optional, default is reviewdog
+      - name: Checkstyle
+        uses: nikitasavinov/checkstyle-action@0.3.0
+          with:
+            level: error # optional, default is info
+            tool_name: reviewdog # optional, default is reviewdog
